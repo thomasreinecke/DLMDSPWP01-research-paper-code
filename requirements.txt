@@ -1,10 +1,9 @@
 pandas
-lxml
 frictionless[parquet,pandas]
-certifi
 yfinance
-plotly 
-ipywidgets
+plotly
 matplotlib
 ta
-tqdm
+sqlalchemy
+nbformat
+vectorbt

@@ -34,8 +34,16 @@ for index, row in df_constituents.iterrows():
         # Insert data into the timeseries table
         for idx, ts_row in df_timeseries.iterrows():
             cursor.execute('''
-                INSERT INTO timeseries (symbol, date, open, high, low, close, volume) VALUES (?, ?, ?, ?, ?, ?, ?)
-            ''', (symbol, ts_row['Date'], ts_row['Open'], ts_row['High'], ts_row['Low'], ts_row['Close'], ts_row['Volume']))
+                INSERT INTO timeseries (symbol, date, open, high, low, close, volume) 
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            ''', (
+                symbol, 
+                ts_row['Date'], 
+                ts_row['Open'], 
+                ts_row['High'], 
+                ts_row['Low'], 
+                ts_row['Close'], 
+                ts_row['Volume']))
     
     # Print the progress
     print(f"Loaded timeseries data for {index + 1}/{len(df_constituents)}: {symbol}")

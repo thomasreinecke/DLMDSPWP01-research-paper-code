@@ -20,8 +20,8 @@ cursor = conn.cursor()
 # Create the stocks table
 cursor.execute('''
 CREATE TABLE stocks (
-    symbol TEXT PRIMARY KEY,
-    name TEXT,
+    symbol TEXT PRIMARY KEY NOT NULL,
+    name TEXT NOT NULL,
     sector TEXT,
     industry TEXT
 )
@@ -30,14 +30,15 @@ CREATE TABLE stocks (
 # Create the timeseries table
 cursor.execute('''
 CREATE TABLE timeseries (
-    symbol TEXT,
-    date TEXT,
+    symbol TEXT NOT NULL,
+    date TEXT NOT NULL,
     open REAL,
     high REAL,
     low REAL,
     close REAL,
     volume INTEGER,
-    FOREIGN KEY (symbol) REFERENCES stocks (symbol)
+    FOREIGN KEY (symbol) REFERENCES stocks (symbol),
+    PRIMARY KEY (symbol, date)
 )
 ''')
 
@@ -51,3 +52,24 @@ conn.commit()
 conn.close()
 
 print("Database schema with indexes has been successfully recreated.")
+
+
+# # Create the performance table
+# create_table_query = '''
+# CREATE TABLE IF NOT EXISTS performance_data (
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     symbol TEXT NOT NULL,
+#     strategy_name TEXT NOT NULL,
+#     strategy_end_balance REAL NOT NULL,
+#     strategy_absolute_performance REAL NOT NULL,
+#     strategy_total_percentage_performance REAL NOT NULL,
+#     strategy_annual_avg_performance REAL NOT NULL,
+#     benchmark_end_balance REAL NOT NULL,
+#     benchmark_absolute_performance REAL NOT NULL,
+#     benchmark_total_percentage_performance REAL NOT NULL,
+#     benchmark_annual_avg_performance REAL NOT NULL,
+#     outperformance_factor REAL NOT NULL,
+#     is_strategy_more_profitable BOOLEAN NOT NULL,
+#     FOREIGN KEY (symbol) REFERENCES stocks(symbol)
+# );
+# '''

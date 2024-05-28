@@ -24,4 +24,4 @@ data: install
 	$(PYTHON) src/pump_timeseries_to_db.py
 
 validate: install
-	$(PYTHON) -m frictionless validate data/constituents.csv
+	$(PYTHON) -m frictionless validate data/sp500_constituents.csv
