@@ -53,23 +53,20 @@ conn.close()
 
 print("Database schema with indexes has been successfully recreated.")
 
-
-# # Create the performance table
-# create_table_query = '''
-# CREATE TABLE IF NOT EXISTS performance_data (
-#     id INTEGER PRIMARY KEY AUTOINCREMENT,
-#     symbol TEXT NOT NULL,
-#     strategy_name TEXT NOT NULL,
-#     strategy_end_balance REAL NOT NULL,
-#     strategy_absolute_performance REAL NOT NULL,
-#     strategy_total_percentage_performance REAL NOT NULL,
-#     strategy_annual_avg_performance REAL NOT NULL,
-#     benchmark_end_balance REAL NOT NULL,
-#     benchmark_absolute_performance REAL NOT NULL,
-#     benchmark_total_percentage_performance REAL NOT NULL,
-#     benchmark_annual_avg_performance REAL NOT NULL,
-#     outperformance_factor REAL NOT NULL,
-#     is_strategy_more_profitable BOOLEAN NOT NULL,
-#     FOREIGN KEY (symbol) REFERENCES stocks(symbol)
-# );
-# '''
+#     CREATE TABLE IF NOT EXISTS performance (
+#         id INTEGER PRIMARY KEY AUTOINCREMENT,
+#         symbol TEXT NOT NULL,
+#         strategy_name TEXT NOT NULL,
+#         strategy_end_balance REAL NOT NULL,
+#         strategy_absolute_performance REAL NOT NULL,
+#         strategy_total_percentage_performance REAL NOT NULL,
+#         strategy_annual_avg_performance REAL NOT NULL,
+#         benchmark_end_balance REAL NOT NULL,
+#         benchmark_absolute_performance REAL NOT NULL,
+#         benchmark_total_percentage_performance REAL NOT NULL,
+#         benchmark_annual_avg_performance REAL NOT NULL,
+#         outperformance_factor REAL NOT NULL,
+#         is_strategy_more_profitable BOOLEAN NOT NULL,
+#         FOREIGN KEY (symbol) REFERENCES stocks(symbol),
+#         UNIQUE(symbol, strategy_name)
+#     );
