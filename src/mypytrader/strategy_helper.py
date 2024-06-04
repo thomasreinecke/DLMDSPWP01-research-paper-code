@@ -3,6 +3,7 @@
 import pandas as pd
 import sqlite3
 
+# returns the relevant data from SQLite for the given symbol
 def get_timeseries_data(symbol: str, start_date: str, end_date: str, db_path: str = 'data/stock_data.db') -> pd.DataFrame:
     conn = sqlite3.connect(db_path)
     query = f'''
@@ -17,6 +18,7 @@ def get_timeseries_data(symbol: str, start_date: str, end_date: str, db_path: st
     data.set_index('date', inplace=True)
     return data
 
+# given a vectorbt resultset, performance metrics are extracted from the results
 def extract_results(pf, data, symbol, start_amount, strategy_name):
     # Calculate performance metrics for the strategy
     end_balance = pf.value().iloc[-1]
@@ -57,6 +59,7 @@ def extract_results(pf, data, symbol, start_amount, strategy_name):
     return results
 
 
+# persists the results of a single stock vectorbt backtesting to SQLite
 def persist_strategy_results_for_single_stock(results, db_path: str = 'data/stock_data.db'):
     try:
         conn = sqlite3.connect(db_path)
