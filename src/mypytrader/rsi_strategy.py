@@ -1,5 +1,4 @@
 # src/pytrader/rsi_strategy.py
-
 import vectorbt as vbt
 import pandas as pd
 from .strategy import Strategy

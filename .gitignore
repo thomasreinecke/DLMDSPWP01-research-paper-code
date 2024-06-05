@@ -1,4 +1,5 @@
 .env
+data/results
 data/timeseries
 data/stock_data*
 *.drawio.bkp

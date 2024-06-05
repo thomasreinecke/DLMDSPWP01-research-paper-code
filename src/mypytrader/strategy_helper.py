@@ -66,7 +66,6 @@ def persist_strategy_results_for_single_stock(results, db_path: str = 'data/stoc
         cursor = conn.cursor()
         
         # Print the results to verify they are being passed correctly
-        print("Results to persist:", results)
 
         upsert_query = '''
         INSERT INTO performance (
